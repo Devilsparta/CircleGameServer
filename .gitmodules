@@ -1,0 +1,3 @@
+[submodule "libs/CircleGameLib"]
+	path = libs/CircleGameLib
+	url = https://github.com/Devilsparta/CircleGameLib.git
