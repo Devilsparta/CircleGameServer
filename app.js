@@ -1,3 +1,5 @@
+var JsBase = require("./libs/JsBase/jsbase.js");
+var Player = require("./libs/CircleGameLib/Player.js");
 var WebSocketServer = require('ws').Server;
 
 var wss = new WebSocketServer({
