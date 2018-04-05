@@ -18,11 +18,13 @@ wss.broadcast = function broadcast(param) {
 		client.send(jsonParam);
 	});
 };
+
 // 初始化  
 wss.on('connection', function (ws) {
 	console.log(wss.clients);
 	// 发送消息  
 	ws.on('message', function (jsonStr) {
+		wss.broadcast(JSON.parse(jsonStr));
 		console.log(JSON.parse(jsonStr));
 	});
 	// 退出聊天  
