@@ -1,3 +1,6 @@
 [submodule "libs/CircleGameLib"]
 	path = libs/CircleGameLib
 	url = https://github.com/Devilsparta/CircleGameLib.git
+[submodule "libs/JsBase"]
+	path = libs/JsBase
+	url = https://github.com/Devilsparta/JsBase.git
