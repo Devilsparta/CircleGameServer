@@ -9,7 +9,7 @@
 	}
 
 	function _namespace() {
-		Cmd.call(this, [namespace]);
+		Cmd.call(this, namespace);
 	}
 	_namespace.prototype = new Cmd();
 
@@ -21,4 +21,5 @@
 		console.log("Loging in!!!");
 		return true;
 	}
+	new _namespace();
 })()
