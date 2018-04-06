@@ -1,10 +1,21 @@
 
+var path = require("path");
+var WebSocketServer = require('ws').Server;
 var JsBase = require("./libs/JsBase/jsbase.js");
 var Player = require("./libs/CircleGameLib/Player.js");
-var WebSocketServer = require('ws').Server;
-var EventEmitter = require('eventemitter2').EventEmitter2;
 
-global.EvEmiter = new EventEmitter();
+require('./libs/CircleGameLib/global');
+
+var cmdFilesPath = "./src/Cmds";
+var fs = require('fs');
+var cmdFiles = fs.readdirSync(cmdFilesPath); //罗列文件夹下面文件
+
+for(var key in cmdFiles){	
+	var cmdPath = "./" + path.join(cmdFilesPath, cmdFiles[key]);
+	var cmdName = path.parse(cmdPath).name;
+	require(cmdPath);	
+}
+
 
 var wss = new WebSocketServer({
 	port: 1000, //监听接口  
