@@ -6,6 +6,7 @@
 
 	if(typeof module !== "undefined"){
 		Cmd = require("../../libs/CircleGameLib/Base_Cmd");
+		Cmder = require("../../libs/CircleGameLib/CommandDispatch");
 	}
 
 	function _namespace() {
@@ -18,7 +19,7 @@
 	}
 
 	_namespace.prototype.Do = function(param){
-		console.log("Loging in!!!");
+		Cmder.SendCmd("Login", {Player: {a:100}});
 		return true;
 	}
 	new _namespace();
