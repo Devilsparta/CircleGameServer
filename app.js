@@ -1,6 +1,10 @@
+
 var JsBase = require("./libs/JsBase/jsbase.js");
 var Player = require("./libs/CircleGameLib/Player.js");
 var WebSocketServer = require('ws').Server;
+var EventEmitter = require('eventemitter2').EventEmitter2;
+
+global.EvEmiter = new EventEmitter();
 
 var wss = new WebSocketServer({
 	port: 1000, //监听接口  
@@ -19,8 +23,12 @@ wss.broadcast = function broadcast(param) {
 	});
 };
 
+var clients = [];
+
 // 初始化  
 wss.on('connection', function (ws) {
+	clients.push(ws);
+	console.log(clients);
 	console.log(wss.clients);
 	// 发送消息  
 	ws.on('message', function (jsonStr) {
