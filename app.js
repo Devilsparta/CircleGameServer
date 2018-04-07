@@ -13,14 +13,14 @@ var cmdFilesPath = "./src/Cmds";
 var fs = require('fs');
 var cmdFiles = fs.readdirSync(cmdFilesPath); //罗列文件夹下面文件
 
-for(var key in cmdFiles){	
+for (var key in cmdFiles) {
 	var cmdPath = "./" + path.join(cmdFilesPath, cmdFiles[key]);
 	var pathParse = path.parse(cmdPath);
-	
-	if(pathParse.ext === ".js"){
+
+	if (pathParse.ext === ".js") {
 		var cmdName = pathParse.name;
 		require(cmdPath);
-	}		
+	}
 }
 
 //Establish WebSocketServer
@@ -46,8 +46,16 @@ wss.broadcast = function broadcast(param) {
 wss.on('connection', function (ws) {
 	// 发送消息  
 	ws.on('message', function (jsonStr) {
+		function SendMsg(param) {
+			var jsonParam = JSON.stringify(param);
+			ws.send(jsonParam);
+		}
+		//Bind MsgSender For this client
+		global.EvEmitter.On("Msger_SendMsg", SendMsg);
 		var param = JSON.parse(jsonStr);
 		Cmder.DispatchCmd(param);
+		global.EvEmitter.Off("Msger_SendMsg", SendMsg);
+
 	});
 	// 退出聊天  
 	ws.on('close', function (close) {

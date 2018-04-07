@@ -19,7 +19,7 @@
 	}
 
 	_namespace.prototype.Do = function(param){
-		Cmder.SendCmd("Login", {Player: {a:100}});
+		Cmder.SendCmd("LoginFinished", {Player: {a:100}});
 		return true;
 	}
 	new _namespace();
