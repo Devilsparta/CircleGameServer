@@ -9,10 +9,12 @@ require('./libs/CircleGameLib/global');
 //Require Cmds
 var Cmder = require("./libs/CircleGameLib/CommandDispatch");
 
+//Find every files in ./src/Cmds
 var cmdFilesPath = "./src/Cmds";
 var fs = require('fs');
-var cmdFiles = fs.readdirSync(cmdFilesPath); //罗列文件夹下面文件
+var cmdFiles = fs.readdirSync(cmdFilesPath); 
 
+//Find out every .js files //TODO:Find a better solution
 for (var key in cmdFiles) {
 	var cmdPath = "./" + path.join(cmdFilesPath, cmdFiles[key]);
 	var pathParse = path.parse(cmdPath);
@@ -29,6 +31,7 @@ var wss = new WebSocketServer({
 	verifyClient: socketVerify //可选，验证连接函数  
 });
 
+//Verify method, figure out where to put in
 function socketVerify(info) {
 	return true;
 	//传入的info参数会包括这个连接的很多信息，你可以在此处使用console.log(info)来查看和选择如何验证连接  
